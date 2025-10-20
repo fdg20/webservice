@@ -2,79 +2,64 @@ import React from 'react'
 import './Footer.css'
 
 const Footer = () => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
-          <div className="footer-brand">
-            <h3 className="footer-logo">Repeatless</h3>
+          <div className="footer-section">
+            <div className="footer-logo">
+              <span className="logo-icon">⟲</span>
+              <h3>Repeatless</h3>
+            </div>
             <p className="footer-description">
-              Transforming businesses through intelligent AI automation solutions.
+              Automating business processes with AI-powered solutions to drive growth and efficiency.
             </p>
             <div className="social-links">
-              <a href="#" className="social-link" aria-label="Instagram">
-                <span>📷</span>
-              </a>
-              <a href="#" className="social-link" aria-label="LinkedIn">
-                <span>💼</span>
-              </a>
-              <a href="#" className="social-link" aria-label="YouTube">
-                <span>📺</span>
-              </a>
+              <a href="#" className="social-link">LinkedIn</a>
+              <a href="#" className="social-link">Twitter</a>
+              <a href="#" className="social-link">GitHub</a>
             </div>
           </div>
 
-          <div className="footer-links">
-            <div className="footer-column">
-              <h4 className="footer-title">Quick Links</h4>
-              <ul className="footer-list">
-                <li><a href="#home" onClick={() => scrollToSection('home')}>Home</a></li>
-                <li><a href="#solutions" onClick={() => scrollToSection('solutions')}>Solutions</a></li>
-                <li><a href="#process" onClick={() => scrollToSection('process')}>Process</a></li>
-                <li><a href="#case-studies" onClick={() => scrollToSection('case-studies')}>Case Studies</a></li>
-                <li><a href="#about" onClick={() => scrollToSection('about')}>About Us</a></li>
-                <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contact</a></li>
-              </ul>
-            </div>
+          <div className="footer-section">
+            <h4 className="footer-title">Services</h4>
+            <ul className="footer-links">
+              <li><a href="#solutions">Process Automation</a></li>
+              <li><a href="#solutions">Data Integration</a></li>
+              <li><a href="#solutions">AI Insights</a></li>
+              <li><a href="#solutions">Custom Solutions</a></li>
+            </ul>
+          </div>
 
-            <div className="footer-column">
-              <h4 className="footer-title">Services</h4>
-              <ul className="footer-list">
-                <li><a href="#">Workflow Automation</a></li>
-                <li><a href="#">Smart Chat Agents</a></li>
-                <li><a href="#">Voice Automation</a></li>
-                <li><a href="#">AI Solutions</a></li>
-                <li><a href="#">Consultation</a></li>
-              </ul>
-            </div>
+          <div className="footer-section">
+            <h4 className="footer-title">Company</h4>
+            <ul className="footer-links">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#case-studies">Case Studies</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
 
-            <div className="footer-column">
-              <h4 className="footer-title">Contact Us</h4>
-              <div className="contact-info">
-                <p>📧 contact@repeatless.in</p>
-                <p>📍 Hyderabad, L.B. Nagar</p>
-                <p>📞 +91 9849884501</p>
-              </div>
+          <div className="footer-section">
+            <h4 className="footer-title">Contact</h4>
+            <div className="contact-info">
+              <p>📧 hello@repeatless.com</p>
+              <p>📞 +1 (555) 123-4567</p>
+              <p>📍 123 Automation St, Tech City</p>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <div className="footer-bottom-content">
-            <p>&copy; 2025 Repeatless. All rights reserved.</p>
-            <div className="footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Cookie Policy</a>
-            </div>
-          </div>
+          <p>&copy; 2024 Repeatless. All rights reserved.</p>
+          <button className="scroll-to-top" onClick={scrollToTop}>
+            ↑
+          </button>
         </div>
       </div>
     </footer>

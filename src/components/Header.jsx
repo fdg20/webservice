@@ -27,6 +27,7 @@ const Header = () => {
       <div className="container">
         <div className="header-content">
           <div className="logo">
+            <span className="logo-icon">⟲</span>
             <h2>Repeatless</h2>
           </div>
           
