@@ -46,12 +46,12 @@ const Hero = () => {
           <div className="hero-text">
             <h1 className="hero-title">
               <span className="fade-in">Automate Your</span>
-              <span className="fade-in" style={{ animationDelay: '0.2s' }}>
-                <span className="text-gradient"> Workflows</span>
-              </span>
             </h1>
+            <h2 className="hero-subtitle fade-in" style={{ animationDelay: '0.2s' }}>
+              <span className="text-gradient">Workflows</span>
+            </h2>
             <h2 className="hero-subtitle fade-in" style={{ animationDelay: '0.4s' }}>
-              Accelerate Your Growth.
+              Accelerate Your <span className="text-gradient">Growth.</span>
             </h2>
             <p className="hero-description fade-in" style={{ animationDelay: '0.6s' }}>
               We help businesses eliminate repetitive tasks with AI-driven automation— 
@@ -59,29 +59,9 @@ const Hero = () => {
             </p>
             <div className="hero-actions fade-in" style={{ animationDelay: '0.8s' }}>
               <button className="btn btn-primary">Get Started</button>
-              <button className="btn btn-secondary">Learn More</button>
             </div>
           </div>
           
-          <div className="hero-visual">
-            <div className="floating-cards">
-              <div className="card card-1">
-                <div className="card-icon">🤖</div>
-                <h3>AI Automation</h3>
-                <p>Smart workflows</p>
-              </div>
-              <div className="card card-2">
-                <div className="card-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Instant results</p>
-              </div>
-              <div className="card card-3">
-                <div className="card-icon">📈</div>
-                <h3>Scale Up</h3>
-                <p>Grow effortlessly</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="hero-stats" ref={statsRef}>
