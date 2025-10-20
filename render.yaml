@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: repeatless-clone
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: repeatless-db
+          property: connectionString
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: CLIENT_URL
+        value: https://repeatless-clone.onrender.com
+
+databases:
+  - name: repeatless-db
+    plan: free
+
+
