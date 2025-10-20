@@ -29,25 +29,17 @@ const Hero = () => {
     <section id="home" className="hero" ref={heroRef}>
       <div className="hero-background">
         <div className="hero-gradient"></div>
-        <div className="hero-particles">
-          {[...Array(50)].map((_, i) => (
-            <div key={i} className="particle" style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
-            }}></div>
-          ))}
-        </div>
+        <div className="hero-particles"></div>
       </div>
       
       <div className="container">
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Create Amazing <span className="underline">Websites</span>
+              Create Amazing <span>Websites</span>
             </h1>
             <h2 className="hero-subtitle">
-              <span className="gradient-text">Digital</span> and <span className="gradient-text">Growth.</span>
+              <span className="text-gradient">Digital</span> and <span className="text-gradient">Growth.</span>
             </h2>
             <p className="hero-description">
               Transform your business with stunning websites and digital solutions. 
