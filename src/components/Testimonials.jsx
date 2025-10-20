@@ -7,20 +7,20 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "Sarah Johnson",
-      role: "CEO, TechCorp",
-      content: "Repeatless transformed our operations. We've seen a 300% increase in efficiency since implementing their automation solutions.",
+      role: "Owner, Fashion Boutique",
+      content: "Webpage Services created an amazing e-commerce site for my boutique. Sales increased by 150% in just 3 months!",
       rating: 5
     },
     {
       name: "Michael Chen",
-      role: "Operations Director, InnovateLab",
-      content: "The team at Repeatless understood our complex requirements and delivered exactly what we needed. Highly recommended!",
+      role: "Restaurant Manager, Golden Dragon",
+      content: "Our new website with online ordering has been a game-changer. Orders increased by 200% and customers love the experience!",
       rating: 5
     },
     {
       name: "Emily Rodriguez",
-      role: "CTO, DataFlow Inc",
-      content: "Outstanding service and results. Our manual processes are now fully automated, saving us countless hours every week.",
+      role: "Photographer, Creative Studio",
+      content: "The portfolio website they created showcases my work beautifully. I've booked 300% more clients since going live!",
       rating: 5
     }
   ]

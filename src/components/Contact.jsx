@@ -29,7 +29,7 @@ const Contact = () => {
         <div className="section-header">
           <h2 className="section-title">Get In Touch</h2>
           <p className="section-description">
-            Ready to automate your business? Let's discuss your needs.
+            Ready to create an amazing website? Let's discuss your project.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ const Contact = () => {
               <div className="contact-icon">📧</div>
               <div className="contact-details">
                 <h3>Email</h3>
-                <p>hello@repeatless.com</p>
+                <p>hello@webpageservices.com</p>
               </div>
             </div>
             <div className="contact-item">
@@ -53,7 +53,7 @@ const Contact = () => {
               <div className="contact-icon">📍</div>
               <div className="contact-details">
                 <h3>Address</h3>
-                <p>123 Automation St, Tech City, TC 12345</p>
+                <p>123 Web Design St, Digital City, DC 12345</p>
               </div>
             </div>
           </div>

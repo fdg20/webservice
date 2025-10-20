@@ -12,11 +12,11 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section">
             <div className="footer-logo">
-              <span className="logo-icon">⟲</span>
-              <h3>Repeatless</h3>
+              <span className="logo-icon">⚡</span>
+              <h3>Webpage Services</h3>
             </div>
             <p className="footer-description">
-              Automating business processes with AI-powered solutions to drive growth and efficiency.
+              Creating stunning websites and digital solutions to drive your business growth and success.
             </p>
             <div className="social-links">
               <a href="#" className="social-link">LinkedIn</a>
@@ -48,15 +48,15 @@ const Footer = () => {
           <div className="footer-section">
             <h4 className="footer-title">Contact</h4>
             <div className="contact-info">
-              <p>📧 hello@repeatless.com</p>
+              <p>📧 hello@webpageservices.com</p>
               <p>📞 +1 (555) 123-4567</p>
-              <p>📍 123 Automation St, Tech City</p>
+              <p>📍 123 Web Design St, Digital City</p>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2024 Repeatless. All rights reserved.</p>
+          <p>&copy; 2024 Webpage Services. All rights reserved.</p>
           <button className="scroll-to-top" onClick={scrollToTop}>
             ↑
           </button>

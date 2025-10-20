@@ -5,26 +5,26 @@ const Process = () => {
   const steps = [
     {
       number: "01",
-      title: "Discovery",
-      description: "We analyze your current processes and identify automation opportunities.",
-      icon: "🔍"
+      title: "Consultation",
+      description: "We discuss your vision, goals, and requirements for your perfect website.",
+      icon: "💬"
     },
     {
       number: "02", 
       title: "Design",
-      description: "We create a custom automation strategy tailored to your business needs.",
-      icon: "📋"
+      description: "We create stunning mockups and wireframes tailored to your brand and audience.",
+      icon: "🎨"
     },
     {
       number: "03",
-      title: "Develop",
-      description: "Our team builds and tests your automation solutions with precision.",
-      icon: "⚙️"
+      title: "Development",
+      description: "Our team builds your website with clean code and modern technologies.",
+      icon: "💻"
     },
     {
       number: "04",
-      title: "Deploy",
-      description: "We launch your automation and provide ongoing support and optimization.",
+      title: "Launch",
+      description: "We deploy your website and provide ongoing maintenance and support.",
       icon: "🚀"
     }
   ]

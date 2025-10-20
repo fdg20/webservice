@@ -4,22 +4,22 @@ import './CaseStudies.css'
 const CaseStudies = () => {
   const caseStudies = [
     {
-      title: "E-commerce Automation",
-      description: "Reduced order processing time by 80% for a leading online retailer.",
-      metrics: "80% faster processing",
-      icon: "📈"
+      title: "E-commerce Website",
+      description: "Increased online sales by 150% for a local boutique with a modern e-commerce platform.",
+      metrics: "150% sales increase",
+      icon: "🛍️"
     },
     {
-      title: "Customer Support",
-      description: "Automated 90% of customer inquiries with AI-powered responses.",
-      metrics: "90% automation rate",
-      icon: "💬"
+      title: "Restaurant Website",
+      description: "Boosted online orders by 200% with an intuitive ordering system and mobile optimization.",
+      metrics: "200% more orders",
+      icon: "🍽️"
     },
     {
-      title: "Data Management",
-      description: "Streamlined data entry and validation across multiple systems.",
-      metrics: "95% accuracy",
-      icon: "📊"
+      title: "Portfolio Website",
+      description: "Helped a photographer showcase work professionally, leading to 300% more bookings.",
+      metrics: "300% more bookings",
+      icon: "📸"
     }
   ]
 

@@ -4,24 +4,24 @@ import './Services.css'
 const Services = () => {
   const services = [
     {
-      title: "Process Automation",
-      description: "Automate repetitive tasks and workflows to increase efficiency and reduce human error.",
-      icon: "⚡"
+      title: "Web Design",
+      description: "Create stunning, responsive websites that captivate your audience and drive conversions.",
+      icon: "🎨"
     },
     {
-      title: "Data Integration",
-      description: "Seamlessly connect and sync data across all your business applications and platforms.",
-      icon: "🔗"
+      title: "E-commerce Solutions",
+      description: "Build powerful online stores with seamless shopping experiences and secure payments.",
+      icon: "🛒"
     },
     {
-      title: "AI-Powered Insights",
-      description: "Get intelligent recommendations and insights to optimize your business processes.",
-      icon: "🧠"
+      title: "SEO Optimization",
+      description: "Boost your search rankings and drive organic traffic to your website.",
+      icon: "📈"
     },
     {
-      title: "Custom Solutions",
-      description: "Tailored automation solutions designed specifically for your business needs.",
-      icon: "🛠️"
+      title: "Maintenance & Support",
+      description: "Keep your website running smoothly with ongoing maintenance and technical support.",
+      icon: "🔧"
     }
   ]
 

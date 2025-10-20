@@ -44,14 +44,14 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Automate Your <span className="underline">Workflows</span>
+              Create Amazing <span className="underline">Websites</span>
             </h1>
             <h2 className="hero-subtitle">
-              <span className="gradient-text">Workflows</span> and <span className="gradient-text">Growth.</span>
+              <span className="gradient-text">Digital</span> and <span className="gradient-text">Growth.</span>
             </h2>
             <p className="hero-description">
-              Transform your business with AI-powered automation. Streamline processes, 
-              reduce manual work, and scale your operations effortlessly.
+              Transform your business with stunning websites and digital solutions. 
+              Build your online presence, attract customers, and grow your business.
             </p>
             <div className="hero-actions">
               <button className="btn btn-primary">
@@ -64,8 +64,8 @@ const Hero = () => {
 
         <div className="hero-stats" ref={statsRef}>
           <div className="stat-item">
-            <div className="stat-number">500+</div>
-            <div className="stat-label">Automations</div>
+            <div className="stat-number">200+</div>
+            <div className="stat-label">Websites</div>
           </div>
           <div className="stat-item">
             <div className="stat-number">99.9%</div>
@@ -76,8 +76,8 @@ const Hero = () => {
             <div className="stat-label">Support</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number">50K+</div>
-            <div className="stat-label">Users</div>
+            <div className="stat-number">100%</div>
+            <div className="stat-label">Satisfaction</div>
           </div>
         </div>
       </div>
