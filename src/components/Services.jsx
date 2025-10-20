@@ -1,105 +1,159 @@
-import React, { useEffect, useRef } from 'react'
-import './Services.css'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaRobot, FaComments, FaChartLine, FaCogs, FaShieldAlt, FaRocket } from 'react-icons/fa';
+import './Services.css';
 
 const Services = () => {
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   const services = [
     {
-      icon: '🤖',
-      title: 'Workflow Automation',
-      description: 'Automate repetitive manual tasks like data entry, scheduling, and approvals with intelligent AI flows. Free up your team\'s time to focus on high-value work while reducing errors and delays.',
-      features: ['Data Entry Automation', 'Smart Scheduling', 'Approval Workflows', 'Error Reduction']
+      icon: FaRobot,
+      title: 'Intelligent Process Automation',
+      description: 'Transform repetitive tasks into automated workflows using advanced AI algorithms. Reduce manual work by up to 80% while maintaining accuracy and consistency.',
+      features: ['Workflow Design', 'Data Processing', 'Error Reduction', '24/7 Operation']
     },
     {
-      icon: '💬',
-      title: 'Smart Chat Agents',
-      description: 'Our AI chat agents work 24/7—delivering instant, human-like responses for everything from product recommendations to order tracking. Automate support, cut wait times, and elevate customer experience effortlessly.',
-      features: ['24/7 Availability', 'Instant Responses', 'Multi-language Support', 'Lead Qualification']
+      icon: FaComments,
+      title: 'AI-Powered Customer Support',
+      description: 'Deploy intelligent chatbots and virtual assistants that provide instant, personalized responses. Enhance customer satisfaction while reducing support costs.',
+      features: ['Natural Language Processing', 'Multi-language Support', 'Sentiment Analysis', 'Escalation Management']
     },
     {
-      icon: '📞',
-      title: 'Mass Voice Automation',
-      description: 'Engage thousands with lifelike AI voice agents in 30+ languages. From scheduling to reminders, our AI handles calls seamlessly—preventing double bookings and scaling smooth conversations effortlessly.',
-      features: ['30+ Languages', 'Lifelike Voice', 'Call Scheduling', 'No Double Bookings']
+      icon: FaChartLine,
+      title: 'Predictive Analytics & Insights',
+      description: 'Leverage machine learning to predict trends, optimize operations, and make data-driven decisions that drive business growth.',
+      features: ['Trend Analysis', 'Forecasting', 'Performance Optimization', 'Risk Assessment']
     },
     {
-      icon: '⚡',
-      title: 'Effortless Operations',
-      description: 'Supercharge productivity with AI-powered workflows. Automate tasks, cut errors, and streamline everything from data to support—boosting efficiency and freeing your team to focus on growth.',
-      features: ['Productivity Boost', 'Error Reduction', 'Streamlined Processes', 'Growth Focus']
+      icon: FaCogs,
+      title: 'Smart Integration Solutions',
+      description: 'Seamlessly connect your existing systems with AI-powered integrations. Streamline data flow and eliminate silos across your organization.',
+      features: ['API Integration', 'Data Synchronization', 'Real-time Updates', 'Custom Connectors']
     },
     {
-      icon: '🎯',
-      title: 'Tailored AI Solutions',
-      description: 'Every business is unique—so are our AI solutions. Tailored to your goals, they deliver instant impact and scale effortlessly as you grow—optimizing operations and elevating customer experiences along the way.',
-      features: ['Custom Solutions', 'Instant Impact', 'Scalable Growth', 'Optimized Operations']
+      icon: FaShieldAlt,
+      title: 'Security & Compliance Automation',
+      description: 'Automate security monitoring, compliance reporting, and threat detection. Protect your business with intelligent security protocols.',
+      features: ['Threat Detection', 'Compliance Monitoring', 'Access Control', 'Audit Trails']
+    },
+    {
+      icon: FaRocket,
+      title: 'Scalable AI Infrastructure',
+      description: 'Build and deploy AI solutions that grow with your business. From cloud deployment to edge computing, we ensure optimal performance.',
+      features: ['Cloud Deployment', 'Edge Computing', 'Auto-scaling', 'Performance Monitoring']
     }
-  ]
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
-    <section id="solutions" className="services" ref={sectionRef}>
+    <section id="solutions" className="services section">
       <div className="container">
-        <div className="services-header fade-in">
+        <motion.div 
+          className="services-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <h2 className="section-title">
-            Solutions Tailored for <span className="text-gradient">Modern Businesses</span>
+            Comprehensive AI Solutions
           </h2>
           <p className="section-subtitle">
-            From startups to enterprises, we simplify your workflows with AI-driven automation.
+            From automation to intelligence, we provide end-to-end AI solutions 
+            that transform how your business operates and scales.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="services-grid">
+        <motion.div 
+          className="services-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {services.map((service, index) => (
-            <div 
-              key={index} 
-              className={`service-card fade-in ${index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <motion.div
+              key={service.title}
+              className="service-card"
+              variants={itemVariants}
+              whileHover={{ 
+                y: -10,
+                transition: { duration: 0.3 }
+              }}
             >
               <div className="service-icon">
-                <span>{service.icon}</span>
+                <service.icon />
               </div>
-              <div className="service-content">
-                <h3 className="service-title">{service.title}</h3>
-                <p className="service-description">{service.description}</p>
-                <ul className="service-features">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="feature-item">
-                      <span className="feature-check">✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              
+              <h3 className="service-title">{service.title}</h3>
+              
+              <p className="service-description">
+                {service.description}
+              </p>
+              
+              <ul className="service-features">
+                {service.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="feature-item">
+                    <span className="feature-bullet">✓</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              
+              <motion.button
+                className="service-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Learn More
+              </motion.button>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="services-cta fade-in">
-          <button className="btn btn-primary">Book a Demo</button>
-        </div>
+        <motion.div 
+          className="services-cta"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <h3>Ready to Transform Your Business?</h3>
+          <p>Let's discuss how our AI solutions can accelerate your growth</p>
+          <motion.a
+            href="#contact"
+            className="btn-primary"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Schedule Consultation
+          </motion.a>
+        </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;
+
+

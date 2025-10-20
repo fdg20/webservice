@@ -1,100 +1,164 @@
-import React, { useEffect, useRef } from 'react'
-import './Hero.css'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaArrowRight, FaPlay } from 'react-icons/fa';
+import './Hero.css';
 
 const Hero = () => {
-  const heroRef = useRef(null)
-  const statsRef = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (heroRef.current) {
-      observer.observe(heroRef.current)
-    }
-    if (statsRef.current) {
-      observer.observe(statsRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   const stats = [
-    { number: '1+', label: 'Years Of Experience' },
-    { number: '200+', label: 'Client Rating' },
-    { number: '1K+', label: 'Customer Interactions' },
-    { number: '100+', label: 'Automation Build' }
-  ]
+    { number: '5+', label: 'Years Experience' },
+    { number: '150+', label: 'Projects Delivered' },
+    { number: '98%', label: 'Client Satisfaction' },
+    { number: '24/7', label: 'Support Available' }
+  ];
 
   return (
     <section id="home" className="hero">
-      <div className="hero-background">
-        <div className="hero-gradient"></div>
-        <div className="hero-particles"></div>
-      </div>
-      
       <div className="container">
-        <div className="hero-content" ref={heroRef}>
-          <div className="hero-text">
-            <h1 className="hero-title">
-              <span className="fade-in">Automate Your</span>
-              <span className="fade-in" style={{ animationDelay: '0.2s' }}>
-                <span className="text-gradient"> Workflows</span>
-              </span>
-            </h1>
-            <h2 className="hero-subtitle fade-in" style={{ animationDelay: '0.4s' }}>
-              Accelerate Your Growth.
-            </h2>
-            <p className="hero-description fade-in" style={{ animationDelay: '0.6s' }}>
-              We help businesses eliminate repetitive tasks with AI-driven automation— 
-              boosting efficiency, saving costs, and scaling faster.
-            </p>
-            <div className="hero-actions fade-in" style={{ animationDelay: '0.8s' }}>
-              <button className="btn btn-primary">Get Started</button>
-              <button className="btn btn-secondary">Learn More</button>
-            </div>
-          </div>
-          
-          <div className="hero-visual">
-            <div className="floating-cards">
-              <div className="card card-1">
-                <div className="card-icon">🤖</div>
-                <h3>AI Automation</h3>
-                <p>Smart workflows</p>
-              </div>
-              <div className="card card-2">
-                <div className="card-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Instant results</p>
-              </div>
-              <div className="card card-3">
-                <div className="card-icon">📈</div>
-                <h3>Scale Up</h3>
-                <p>Grow effortlessly</p>
-              </div>
-            </div>
-          </div>
+        <div className="hero-content">
+          {/* Main Content */}
+          <motion.div 
+            className="hero-text"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.h1 
+              className="hero-title"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Transform Your Business with
+              <span className="gradient-text"> AI Automation</span>
+            </motion.h1>
+            
+            <motion.p 
+              className="hero-subtitle"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              Streamline operations, boost productivity, and scale effortlessly with our 
+              cutting-edge AI solutions. From workflow automation to intelligent chatbots, 
+              we help businesses achieve unprecedented efficiency.
+            </motion.p>
+
+            <motion.div 
+              className="hero-actions"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <motion.a
+                href="#contact"
+                className="btn-primary hero-cta"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Start Your Journey
+                <FaArrowRight className="cta-icon" />
+              </motion.a>
+              
+              <motion.button
+                className="btn-secondary hero-demo"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaPlay className="demo-icon" />
+                Watch Demo
+              </motion.button>
+            </motion.div>
+          </motion.div>
+
+          {/* Stats Section */}
+          <motion.div 
+            className="hero-stats"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                className="stat-item"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="stat-number">{stat.number}</div>
+                <div className="stat-label">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
-        <div className="hero-stats" ref={statsRef}>
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-item fade-in" style={{ animationDelay: `${1 + index * 0.1}s` }}>
-              <div className="stat-number">{stat.number}</div>
-              <div className="stat-label">{stat.label}</div>
+        {/* Floating Elements */}
+        <motion.div 
+          className="hero-visual"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+        >
+          <motion.div
+            className="floating-card card-1"
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div className="card-content">
+              <div className="card-icon">🤖</div>
+              <div className="card-text">AI Automation</div>
             </div>
-          ))}
-        </div>
+          </motion.div>
+
+          <motion.div
+            className="floating-card card-2"
+            animate={{
+              y: [0, 15, 0],
+              rotate: [0, -3, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div className="card-content">
+              <div className="card-icon">⚡</div>
+              <div className="card-text">Lightning Fast</div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="floating-card card-3"
+            animate={{
+              y: [0, -10, 0],
+              rotate: [0, 2, 0],
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div className="card-content">
+              <div className="card-icon">📈</div>
+              <div className="card-text">Scale Growth</div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
+
+

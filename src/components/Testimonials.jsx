@@ -1,137 +1,224 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './Testimonials.css'
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import './Testimonials.css';
 
 const Testimonials = () => {
-  const sectionRef = useRef(null)
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [])
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const testimonials = [
     {
-      name: 'Ali',
-      role: 'Social Media Manager, Tyga',
-      content: 'Repeatless completely transformed how we handle client engagement on Instagram. The DM and comments automation not only saved hours every day but helped us close more deals through genuine, real-time interactions.',
-      avatar: '👨‍💼',
-      rating: 5
+      name: 'Sarah Chen',
+      role: 'CEO',
+      company: 'TechFlow Industries',
+      image: '👩‍💼',
+      rating: 5,
+      text: 'TechFlow Solutions completely transformed our operations. The AI automation reduced our processing time by 80% and increased customer satisfaction significantly. Their team is professional, innovative, and delivers exceptional results.',
+      results: ['80% faster processing', '95% customer satisfaction', '$500K annual savings']
     },
     {
-      name: 'David Sai',
-      role: 'Founder, ScaleUp Agency',
-      content: 'Our LinkedIn presence skyrocketed. The AI auto-posting system analyzes high-performing posts, rewrites them in our brand voice, and publishes daily. We now get qualified leads directly from our content.',
-      avatar: '👨‍💻',
-      rating: 5
+      name: 'Michael Rodriguez',
+      role: 'CTO',
+      company: 'DataSync Corp',
+      image: '👨‍💻',
+      rating: 5,
+      text: 'The AI integration was seamless and exceeded our expectations. We now have intelligent data processing that scales with our business. The ROI was evident within the first quarter.',
+      results: ['Seamless integration', 'Scalable solutions', 'Immediate ROI']
     },
     {
-      name: 'Mark Zen',
-      role: 'Marketing Director, BrandHile',
-      content: 'The social media automation built by Repeatless keeps our brand consistent across Instagram, TikTok, and LinkedIn. It\'s like having a 24/7 content team—hands-free and always on time.',
-      avatar: '👨‍🎨',
-      rating: 5
+      name: 'Emily Watson',
+      role: 'Operations Director',
+      company: 'Global Logistics',
+      image: '👩‍🔧',
+      rating: 5,
+      text: 'Working with TechFlow was a game-changer. Their AI solutions optimized our supply chain and reduced operational costs by 60%. The team understood our challenges and delivered beyond our requirements.',
+      results: ['60% cost reduction', 'Optimized supply chain', 'Exceeded expectations']
     },
     {
-      name: 'Aravind Sami',
-      role: 'Head of Marketing, Masaai',
-      content: 'The newsletter automation helped us find new clients we didn\'t even know existed. It monitors spam-routed newsletters, identifies potential businesses, and reaches out automatically. Game-changing for our email marketing team.',
-      avatar: '👨‍📊',
-      rating: 5
+      name: 'David Park',
+      role: 'Founder',
+      company: 'InnovateTech',
+      image: '👨‍🚀',
+      rating: 5,
+      text: 'The automation solutions provided by TechFlow have been instrumental in our rapid growth. We can now handle 5x more clients with the same team size. Their support and expertise are unmatched.',
+      results: ['5x client capacity', 'Rapid growth enabled', 'Unmatched expertise']
     },
     {
-      name: 'Maria',
-      role: 'Founder, Vijai Public',
-      content: 'With Repeatless\' WhatsApp automation, every new book release now reaches thousands instantly. We went from manual broadcasts to automated, personalized messaging—and our launch-day sales have doubled.',
-      avatar: '👩‍💼',
-      rating: 5
-    },
-    {
-      name: 'Ryan Patel',
-      role: 'Operations Lead, StartEdge Consultancy',
-      content: 'Our consultancy teams save hours every week. The consolidation automation auto-creates all documents, names them perfectly, and stores them in the right Drive folders. Zero manual errors, 100% organized.',
-      avatar: '👨‍🔧',
-      rating: 5
+      name: 'Lisa Thompson',
+      role: 'VP of Operations',
+      company: 'HealthTech Solutions',
+      image: '👩‍⚕️',
+      rating: 5,
+      text: 'TechFlow\'s AI solutions revolutionized our patient data management. The accuracy and efficiency improvements have been remarkable. We highly recommend their services to any healthcare organization.',
+      results: ['Revolutionary data management', 'Remarkable accuracy', 'Healthcare expertise']
     }
-  ]
+  ];
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
-    <section id="testimonials" className="testimonials" ref={sectionRef}>
+    <section className="testimonials section">
       <div className="container">
-        <div className="testimonials-header fade-in">
+        <motion.div 
+          className="testimonials-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <h2 className="section-title">
-            Real Results from Our <span className="text-gradient">AI Automation Solutions</span>
+            What Our Clients Say
           </h2>
-        </div>
+          <p className="section-subtitle">
+            Don't just take our word for it. Hear from the businesses that have 
+            transformed their operations with our AI solutions.
+          </p>
+        </motion.div>
 
-        <div className="testimonials-content">
-          <div className="testimonial-card fade-in">
-            <div className="testimonial-content">
-              <div className="testimonial-quote">
-                <span className="quote-mark">"</span>
-                <p className="testimonial-text">
-                  {testimonials[currentTestimonial].content}
-                </p>
-              </div>
-              
-              <div className="testimonial-author">
-                <div className="author-avatar">
-                  <span>{testimonials[currentTestimonial].avatar}</span>
-                </div>
-                <div className="author-info">
-                  <h4 className="author-name">{testimonials[currentTestimonial].name}</h4>
-                  <p className="author-role">{testimonials[currentTestimonial].role}</p>
+        <motion.div 
+          className="testimonials-content"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <div className="testimonial-carousel">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentTestimonial}
+                className="testimonial-card"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="testimonial-content">
+                  <div className="quote-icon">
+                    <FaQuoteLeft />
+                  </div>
+                  
+                  <blockquote className="testimonial-text">
+                    {testimonials[currentTestimonial].text}
+                  </blockquote>
+                  
+                  <div className="testimonial-author">
+                    <div className="author-avatar">
+                      {testimonials[currentTestimonial].image}
+                    </div>
+                    <div className="author-info">
+                      <div className="author-name">
+                        {testimonials[currentTestimonial].name}
+                      </div>
+                      <div className="author-role">
+                        {testimonials[currentTestimonial].role}
+                      </div>
+                      <div className="author-company">
+                        {testimonials[currentTestimonial].company}
+                      </div>
+                    </div>
+                  </div>
+                  
                   <div className="testimonial-rating">
-                    {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                      <span key={i} className="star">★</span>
+                    {[...Array(testimonials[currentTestimonial].rating)].map((_, index) => (
+                      <FaStar key={index} className="star" />
+                    ))}
+                  </div>
+                  
+                  <div className="testimonial-results">
+                    {testimonials[currentTestimonial].results.map((result, index) => (
+                      <div key={index} className="result-badge">
+                        {result}
+                      </div>
                     ))}
                   </div>
                 </div>
+              </motion.div>
+            </AnimatePresence>
+            
+            <div className="carousel-controls">
+              <button 
+                className="control-btn prev"
+                onClick={prevTestimonial}
+                aria-label="Previous testimonial"
+              >
+                <FaChevronLeft />
+              </button>
+              
+              <div className="carousel-dots">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`dot ${index === currentTestimonial ? 'active' : ''}`}
+                    onClick={() => setCurrentTestimonial(index)}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
               </div>
+              
+              <button 
+                className="control-btn next"
+                onClick={nextTestimonial}
+                aria-label="Next testimonial"
+              >
+                <FaChevronRight />
+              </button>
             </div>
           </div>
+        </motion.div>
 
-          <div className="testimonial-navigation">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={`nav-dot ${currentTestimonial === index ? 'active' : ''}`}
-                onClick={() => setCurrentTestimonial(index)}
-              />
-            ))}
+        <motion.div 
+          className="testimonials-cta"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="cta-content">
+            <h3>Join Our Success Stories</h3>
+            <p>Ready to transform your business with AI automation?</p>
+            <motion.a
+              href="#contact"
+              className="btn-primary"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Your Journey
+            </motion.a>
           </div>
-        </div>
-
-        <div className="testimonials-cta fade-in">
-          <h3>Ready to Repeat Less & Grow More?</h3>
-          <p>Let's map your automation journey together. Book your personalized demo today.</p>
-          <button className="btn btn-primary">Book a Demo</button>
-        </div>
+        </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Testimonials
+export default Testimonials;
+
+

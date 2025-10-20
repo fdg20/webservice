@@ -1,141 +1,159 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './Process.css'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaSearch, FaDraftingCompass, FaRocket, FaChartLine } from 'react-icons/fa';
+import './Process.css';
 
 const Process = () => {
-  const sectionRef = useRef(null)
-  const [activeStep, setActiveStep] = useState(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   const steps = [
     {
-      number: '01',
-      title: 'Discover',
-      description: 'We analyze your current workflows and pain points.',
-      icon: '🔍',
+      icon: FaSearch,
+      title: 'Discovery & Analysis',
+      description: 'We conduct a comprehensive analysis of your current workflows, identify pain points, and map out optimization opportunities.',
       details: [
-        'Comprehensive workflow audit',
-        'Identify automation opportunities',
-        'Assess current pain points',
-        'Define success metrics'
+        'Business Process Audit',
+        'Stakeholder Interviews',
+        'Technology Assessment',
+        'ROI Analysis'
       ]
     },
     {
-      number: '02',
-      title: 'Design',
-      description: 'Build a tailored AI automation blueprint for your business.',
-      icon: '🎨',
+      icon: FaDraftingCompass,
+      title: 'Strategy & Design',
+      description: 'Our experts design a customized AI automation strategy tailored to your specific needs and business objectives.',
       details: [
-        'Custom automation strategy',
-        'AI workflow design',
-        'Integration planning',
-        'Timeline and milestones'
+        'Solution Architecture',
+        'Integration Planning',
+        'Timeline Development',
+        'Resource Allocation'
       ]
     },
     {
-      number: '03',
-      title: 'Deploy',
-      description: 'Implement and integrate solutions with minimal disruption.',
-      icon: '🚀',
+      icon: FaRocket,
+      title: 'Implementation & Deployment',
+      description: 'We build and deploy your AI solutions with minimal disruption to your existing operations.',
       details: [
-        'Seamless implementation',
-        'Team training and support',
-        'Quality assurance testing',
-        'Go-live monitoring'
+        'Custom Development',
+        'System Integration',
+        'Testing & Quality Assurance',
+        'Go-Live Support'
       ]
     },
     {
-      number: '04',
-      title: 'Scale',
-      description: 'Monitor, optimize, and expand automation as you grow.',
-      icon: '📈',
+      icon: FaChartLine,
+      title: 'Optimization & Growth',
+      description: 'Continuous monitoring, optimization, and scaling to ensure your AI solutions evolve with your business.',
       details: [
-        'Performance monitoring',
-        'Continuous optimization',
-        'Scalable expansion',
-        'Ongoing support'
+        'Performance Monitoring',
+        'Continuous Improvement',
+        'Scaling Solutions',
+        'Ongoing Support'
       ]
     }
-  ]
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
-    <section id="process" className="process" ref={sectionRef}>
+    <section id="process" className="process section">
       <div className="container">
-        <div className="process-header fade-in">
+        <motion.div 
+          className="process-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <h2 className="section-title">
-            Automation, <span className="text-gradient">Made Simple</span>
+            Our Proven Process
           </h2>
-        </div>
+          <p className="section-subtitle">
+            From initial consultation to full deployment, we follow a systematic approach 
+            that ensures successful AI implementation and maximum ROI.
+          </p>
+        </motion.div>
 
-        <div className="process-content">
-          <div className="process-steps">
-            {steps.map((step, index) => (
-              <div 
-                key={index}
-                className={`process-step fade-in ${activeStep === index ? 'active' : ''}`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-                onMouseEnter={() => setActiveStep(index)}
-              >
-                <div className="step-number">{step.number}</div>
-                <div className="step-content">
-                  <div className="step-icon">{step.icon}</div>
+        <motion.div 
+          className="process-timeline"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              className={`process-step ${index % 2 === 0 ? 'left' : 'right'}`}
+              variants={itemVariants}
+            >
+              <div className="step-content">
+                <div className="step-icon">
+                  <step.icon />
+                </div>
+                
+                <div className="step-info">
+                  <div className="step-number">{index + 1}</div>
                   <h3 className="step-title">{step.title}</h3>
                   <p className="step-description">{step.description}</p>
-                  <div className="step-details">
+                  
+                  <ul className="step-details">
                     {step.details.map((detail, detailIndex) => (
-                      <div key={detailIndex} className="detail-item">
-                        <span className="detail-check">✓</span>
+                      <li key={detailIndex} className="detail-item">
+                        <span className="detail-bullet">•</span>
                         {detail}
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
-          <div className="process-visual">
-            <div className="process-diagram">
-              <div className="diagram-line"></div>
-              {steps.map((step, index) => (
-                <div 
-                  key={index}
-                  className={`diagram-step ${activeStep === index ? 'active' : ''}`}
-                  style={{ '--step-delay': `${index * 0.2}s` }}
-                >
-                  <div className="diagram-circle">
-                    <span>{step.number}</span>
-                  </div>
-                  <div className="diagram-label">{step.title}</div>
-                </div>
-              ))}
-            </div>
+        <motion.div 
+          className="process-cta"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="cta-content">
+            <h3>Ready to Start Your AI Journey?</h3>
+            <p>Let's discuss your automation goals and create a custom roadmap</p>
+            <motion.a
+              href="#contact"
+              className="btn-primary"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Free Consultation
+            </motion.a>
           </div>
-        </div>
-
-        <div className="process-cta fade-in">
-          <button className="btn btn-primary">Get Free Consultation</button>
-        </div>
+        </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Process
+export default Process;
+
+
